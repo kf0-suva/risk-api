@@ -1,10 +1,8 @@
 openapi: 3.1.0
 info:
-  version: 0.10.0
+  version: 1.0.0
   title: Berufscode API
-  description: |
-    🇩🇪 Beschreibt die gegenüber einem ERP angebotenen Schnittstellen auf Seite Suva für die Pflege der Berufscodes.
-    🇬🇧 Describes the interfaces offered to an ERP system by Suva for maintaining occupational codes.
+  description: "\U0001F1E9\U0001F1EA Beschreibt die gegenüber einem ERP angebotenen Schnittstellen auf Seite Suva für die Pflege der Berufscodes.\n\U0001F1EC\U0001F1E7 Describes the interfaces offered to an ERP system by Suva for maintaining occupational codes.\n"
   license:
     name: Apache License 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
@@ -17,56 +15,45 @@ servers:
     description: Staging mock server
   - url: https://api.suva.ch/mock/occupation-codes
     description: Production mock server
-
 tags:
   - name: Suva Occupation Codes
   - name: ISCO Occupation Types
   - name: Occupation Codes
   - name: Company Parts
   - name: Events
-
 paths:
   /v1/suva-occupation-codes:
     parameters:
       - $ref: "#/components/parameters/X-Client-Vendor"
       - $ref: "#/components/parameters/X-Client-Name"
       - $ref: "#/components/parameters/X-Client-Version"
-
     get:
-      description: |
-        🇩🇪 Liefert alle von der Suva bereitgestellten branchenüblichen Berufscodes mit der Zuordnung zu der ISCO-Berufsart.
-        🇬🇧 Provides all industry standard occupation codes provided by Suva, with the assignment to the ISCO type of profession.
+      description: "\U0001F1E9\U0001F1EA Liefert alle von der Suva bereitgestellten branchenüblichen Berufscodes mit der Zuordnung zu der ISCO-Berufsart.\n\U0001F1EC\U0001F1E7 Provides all industry standard occupation codes provided by Suva, with the assignment to the ISCO type of profession.\n"
       tags:
         - Suva Occupation Codes
       security:
-        - ApiKeyAuth: [ ]
+        - ApiKeyAuth: []
       operationId: getSuvaOccupationCodes
       responses:
         "200":
-          description: |
-            🇩🇪 Liste von Suva-Berufscodes.
-            🇬🇧 List of Suva occupation codes.
+          description: "\U0001F1E9\U0001F1EA Liste von Suva-Berufscodes.\n\U0001F1EC\U0001F1E7 List of Suva occupation codes.\n"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: "#/components/schemas/SuvaOccupationCode"
-
   /v1/isco-occupation-types:
     parameters:
       - $ref: "#/components/parameters/X-Client-Vendor"
       - $ref: "#/components/parameters/X-Client-Name"
       - $ref: "#/components/parameters/X-Client-Version"
-
     get:
-      description: |
-        🇩🇪 Liefert alle in der Suva unterstützen ISCO-Berufsarten.
-        🇬🇧 Provides all ISCO occupation types supported by the Suva.
+      description: "\U0001F1E9\U0001F1EA Liefert alle in der Suva unterstützen ISCO-Berufsarten.\n\U0001F1EC\U0001F1E7 Provides all ISCO occupation types supported by the Suva.\n"
       tags:
         - ISCO Occupation Types
       security:
-        - ApiKeyAuth: [ ]
+        - ApiKeyAuth: []
       operationId: getIscoOccupationTypes
       parameters:
         - $ref: "#/components/parameters/PremiumYear"
@@ -74,30 +61,24 @@ paths:
         "400":
           $ref: "#/components/responses/BadRequestError"
         "200":
-          description: |
-            🇩🇪 Liste von ISCO-Berufsarten und zugeordnete Risiko-Klassen.
-            🇬🇧 List of ISCO occupation types and associated risk classes.
+          description: "\U0001F1E9\U0001F1EA Liste von ISCO-Berufsarten und zugeordnete Risiko-Klassen.\n\U0001F1EC\U0001F1E7 List of ISCO occupation types and associated risk classes.\n"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: "#/components/schemas/IscoOccupationType"
-
   /v1/company-parts:
     parameters:
       - $ref: "#/components/parameters/X-Client-Vendor"
       - $ref: "#/components/parameters/X-Client-Name"
       - $ref: "#/components/parameters/X-Client-Version"
-
     get:
-      description: |
-        🇩🇪 Liefert die Betriebsteil-Situation für alle Betriebsteile (ggf. auch Betriebsteile die keine Personalverleih-Tätigkeiten durchführen).
-        🇬🇧 Provides the profiles for all company parts (possibly also company parts that do not carry out temporary work agency activities).
+      description: "\U0001F1E9\U0001F1EA Liefert die Betriebsteil-Situation für alle Betriebsteile (ggf. auch Betriebsteile die keine Personalverleih-Tätigkeiten durchführen).\n\U0001F1EC\U0001F1E7 Provides the profiles for all company parts (possibly also company parts that do not carry out temporary work agency activities).\n"
       tags:
         - Company Parts
       security:
-        - ApiKeyAuth: [ ]
+        - ApiKeyAuth: []
       operationId: getCompanyPartProfiles
       parameters:
         - $ref: "#/components/parameters/PremiumYear"
@@ -105,58 +86,45 @@ paths:
         "400":
           $ref: "#/components/responses/BadRequestError"
         "200":
-          description: |
-            🇩🇪 Liste von Betriebsteil-Situationen.
-            🇬🇧 List of company part profiles.
+          description: "\U0001F1E9\U0001F1EA Liste von Betriebsteil-Situationen.\n\U0001F1EC\U0001F1E7 List of company part profiles.\n"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: "#/components/schemas/CompanyPartProfile"
-
   /v1/occupation-codes:
     parameters:
       - $ref: "#/components/parameters/X-Client-Vendor"
       - $ref: "#/components/parameters/X-Client-Name"
       - $ref: "#/components/parameters/X-Client-Version"
-
     get:
-      description: |
-        🇩🇪 Liefert alle Berufscodes (Individuell und Suva) zu dem angemeldeten Personalverleiher.
-        🇬🇧 Provides all occupation codes (individual and Suva) for the registered temporary work agency provider.
+      description: "\U0001F1E9\U0001F1EA Liefert alle Berufscodes (Individuell und Suva) zu dem angemeldeten Personalverleiher.\n\U0001F1EC\U0001F1E7 Provides all occupation codes (individual and Suva) for the registered temporary work agency provider.\n"
       tags:
         - Occupation Codes
       security:
-        - ApiKeyAuth: [ ]
+        - ApiKeyAuth: []
       operationId: getOccupationCodes
       responses:
         "401":
           $ref: "#/components/responses/NotAuthenticatedError"
         "200":
-          description: |
-            🇩🇪 Liste von Berufscodes.
-            🇬🇧 List of occupation codes.
+          description: "\U0001F1E9\U0001F1EA Liste von Berufscodes.\n\U0001F1EC\U0001F1E7 List of occupation codes.\n"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: "#/components/schemas/OccupationCode"
-
     put:
-      description: |
-        🇩🇪 Einen Berufscode aus den Suva-Berufscodes hinzufügen.
-        🇬🇧 Add an occupation code from the list of Suva occupation codes.
+      description: "\U0001F1E9\U0001F1EA Einen Berufscode aus den Suva-Berufscodes hinzufügen.\n\U0001F1EC\U0001F1E7 Add an occupation code from the list of Suva occupation codes.\n"
       tags:
         - Occupation Codes
       security:
-        - ApiKeyAuth: [ ]
+        - ApiKeyAuth: []
       operationId: activateOccupationCode
       requestBody:
-        description: |
-          🇩🇪 Der hinzuzufügende Suva-Berufscode.
-          🇬🇧 The Suva occupation code to be added.
+        description: "\U0001F1E9\U0001F1EA Der hinzuzufügende Suva-Berufscode.\n\U0001F1EC\U0001F1E7 The Suva occupation code to be added.\n"
         required: true
         content:
           application/json:
@@ -185,20 +153,15 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/OccupationCode"
-
     post:
-      description: |
-        🇩🇪 Einen individuellen Berufscode einreichen.
-        🇬🇧 Submit an individual occupation code.
+      description: "\U0001F1E9\U0001F1EA Einen individuellen Berufscode einreichen.\n\U0001F1EC\U0001F1E7 Submit an individual occupation code.\n"
       tags:
         - Occupation Codes
       security:
-        - ApiKeyAuth: [ ]
+        - ApiKeyAuth: []
       operationId: submitOccupationCode
       requestBody:
-        description: |
-          🇩🇪 Der individuelle Berufscode inklusive führender Sprache.
-          🇬🇧 The individual occupation code including leading language.
+        description: "\U0001F1E9\U0001F1EA Der individuelle Berufscode inklusive führender Sprache.\n\U0001F1EC\U0001F1E7 The individual occupation code including leading language.\n"
         required: true
         content:
           application/json:
@@ -237,22 +200,18 @@ paths:
                 properties:
                   eventId:
                     $ref: "#/components/schemas/EventId"
-
   /v1/occupation-codes/{occupationCodeId}:
     parameters:
       - $ref: "#/components/parameters/OccupationCodeId"
       - $ref: "#/components/parameters/X-Client-Vendor"
       - $ref: "#/components/parameters/X-Client-Name"
       - $ref: "#/components/parameters/X-Client-Version"
-
     delete:
-      description: |
-        🇩🇪 Der Berufscode wird bei Suva auf das aktuelle Datum deaktiviert. Eine erneute Aktivierung ist jederzeit wieder möglich.
-        🇬🇧 The occupation code will be deactivated at Suva on the current date. Reactivation is possible at any time.
+      description: "\U0001F1E9\U0001F1EA Der Berufscode wird bei Suva auf das aktuelle Datum deaktiviert. Eine erneute Aktivierung ist jederzeit wieder möglich.\n\U0001F1EC\U0001F1E7 The occupation code will be deactivated at Suva on the current date. Reactivation is possible at any time.\n"
       tags:
         - Occupation Codes
       security:
-        - ApiKeyAuth: [ ]
+        - ApiKeyAuth: []
       operationId: deactivateOccupationCode
       responses:
         "401":
@@ -261,20 +220,15 @@ paths:
           $ref: "#/components/responses/NotFoundError"
         "204":
           description: Berufscode deaktiviert.
-
     put:
-      description: |
-        🇩🇪 Einen Suva-Berufscode oder individuellen Berufscode aktualisieren.
-        🇬🇧 Update a Suva occupation code or an individual occupation code.
+      description: "\U0001F1E9\U0001F1EA Einen Suva-Berufscode oder individuellen Berufscode aktualisieren.\n\U0001F1EC\U0001F1E7 Update a Suva occupation code or an individual occupation code.\n"
       tags:
         - Occupation Codes
       security:
-        - ApiKeyAuth: [ ]
+        - ApiKeyAuth: []
       operationId: updateOccupationCode
       requestBody:
-        description: |
-          🇩🇪 Der Suva-Berufscode oder individuelle Berufscode.
-          🇬🇧 The Suva occupation code or the individual occupation code.
+        description: "\U0001F1E9\U0001F1EA Der Suva-Berufscode oder individuelle Berufscode.\n\U0001F1EC\U0001F1E7 The Suva occupation code or the individual occupation code.\n"
         required: true
         content:
           application/json:
@@ -300,52 +254,42 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/OccupationCode"
-
   /v1/events:
     parameters:
       - $ref: "#/components/parameters/X-Client-Vendor"
       - $ref: "#/components/parameters/X-Client-Name"
       - $ref: "#/components/parameters/X-Client-Version"
-
     get:
-      description: >-
-        🇩🇪 Abfrage aller nicht quittierten Events für die Informationen vorliegen (EventStatus == processed).
-        🇬🇧 Query of all unacknowledged events where data is present (EventStatus == processed).
+      description: "\U0001F1E9\U0001F1EA Abfrage aller nicht quittierten Events für die Informationen vorliegen (EventStatus == processed). \U0001F1EC\U0001F1E7 Query of all unacknowledged events where data is present (EventStatus == processed)."
       tags:
         - Events
       operationId: getEvents
       security:
-        - ApiKeyAuth: [ ]
+        - ApiKeyAuth: []
       responses:
         "401":
           $ref: "#/components/responses/NotAuthenticatedError"
         "200":
-          description: |
-            🇩🇪 Liste von Events.
-            🇬🇧 List of events.
+          description: "\U0001F1E9\U0001F1EA Liste von Events.\n\U0001F1EC\U0001F1E7 List of events.\n"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: "#/components/schemas/Event"
-
   /v1/events/{eventId}:
     parameters:
       - $ref: "#/components/parameters/EventId"
       - $ref: "#/components/parameters/X-Client-Vendor"
       - $ref: "#/components/parameters/X-Client-Name"
       - $ref: "#/components/parameters/X-Client-Version"
-
     get:
-      description: |
-        🇩🇪 Abfrage eines spezifischen Events.
-        🇬🇧 Query of a specific event.
+      description: "\U0001F1E9\U0001F1EA Abfrage eines spezifischen Events.\n\U0001F1EC\U0001F1E7 Query of a specific event.\n"
       tags:
         - Events
       operationId: getEvent
       security:
-        - ApiKeyAuth: [ ]
+        - ApiKeyAuth: []
       responses:
         "401":
           $ref: "#/components/responses/NotAuthenticatedError"
@@ -357,16 +301,13 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Event"
-
     delete:
-      description: |
-        🇩🇪 Wird ein offener Event quittiert, wird dieser nicht mehr in <a href="#operations-Events-getEvents">/v1/events</a> aufgeführt.
-        🇬🇧 Once an open event is acknowledged, it will no longer be listed in <a href="#operations-Events-getEvents">/v1/events</a>.
+      description: "\U0001F1E9\U0001F1EA Wird ein offener Event quittiert, wird dieser nicht mehr in <a href=\"#operations-Events-getEvents\">/v1/events</a> aufgeführt.\n\U0001F1EC\U0001F1E7 Once an open event is acknowledged, it will no longer be listed in <a href=\"#operations-Events-getEvents\">/v1/events</a>.\n"
       tags:
         - Events
       operationId: acknowledgeEvent
       security:
-        - ApiKeyAuth: [ ]
+        - ApiKeyAuth: []
       responses:
         "401":
           $ref: "#/components/responses/NotAuthenticatedError"
@@ -375,112 +316,81 @@ paths:
         "422":
           $ref: "#/components/responses/UnprocessableContentError"
         "204":
-          description: |
-            🇩🇪 Der Event ist quittiert.
-            🇬🇧 The event is acknowledged.
-
+          description: "\U0001F1E9\U0001F1EA Der Event ist quittiert.\n\U0001F1EC\U0001F1E7 The event is acknowledged.\n"
 components:
   parameters:
     PremiumYear:
       name: year
-      description: |
-        🇩🇪 Prämienjahr, muss zwischen 2025 und dem nächsten Kalenderjahr liegen (Default: Kalenderjahr)
-        🇬🇧 Premium year, must be between 2025 and the next calendar year (default: calendar year).
+      description: "\U0001F1E9\U0001F1EA Prämienjahr, muss zwischen 2025 und dem nächsten Kalenderjahr liegen (Default: Kalenderjahr)\n\U0001F1EC\U0001F1E7 Premium year, must be between 2025 and the next calendar year (default: calendar year).\n"
       in: query
       schema:
         $ref: "#/components/schemas/PremiumYear"
-
     OccupationCodeId:
       name: occupationCodeId
       in: path
       required: true
       schema:
         $ref: "#/components/schemas/OccupationCodeId"
-
     EventId:
       name: eventId
       in: path
       required: true
       schema:
         $ref: "#/components/schemas/EventId"
-
     # headers
     X-Client-Vendor:
       name: X-Client-Vendor
       in: header
-      description: |
-        🇩🇪 Name des Herstellers der Client-Anwendung.
-        🇬🇧 Name of the vendor responsible for the client application.
+      description: "\U0001F1E9\U0001F1EA Name des Herstellers der Client-Anwendung.\n\U0001F1EC\U0001F1E7 Name of the vendor responsible for the client application.\n"
       required: false
       schema:
         type: string
       example: "Acme Corporation"
-
     X-Client-Name:
       name: X-Client-Name
       in: header
-      description: |
-        🇩🇪 Produkt-Name der Client-Anwendung.
-        🇬🇧 Product name of the client application.
+      description: "\U0001F1E9\U0001F1EA Produkt-Name der Client-Anwendung.\n\U0001F1EC\U0001F1E7 Product name of the client application.\n"
       required: false
       schema:
         type: string
       example: "PayrollPro"
-
     X-Client-Version:
       name: X-Client-Version
       in: header
-      description: |
-        🇩🇪 Version der Anwendung.
-        🇬🇧 Version of the application.
+      description: "\U0001F1E9\U0001F1EA Version der Anwendung.\n\U0001F1EC\U0001F1E7 Version of the application.\n"
       required: false
       schema:
         type: string
       example: "2.5"
-
   responses:
     BadRequestError:
-      description: |
-        🇩🇪 Anfrage kann nicht verarbeitet werden.
-        🇬🇧 Request cannot be processed.
+      description: "\U0001F1E9\U0001F1EA Anfrage kann nicht verarbeitet werden.\n\U0001F1EC\U0001F1E7 Request cannot be processed.\n"
       content:
         application/json:
           schema:
             $ref: "#/components/schemas/Error"
-
     NotAuthenticatedError:
-      description: |
-        🇩🇪 Keine gültigen Authentifizierungsdaten für die angeforderte Ressource vorhanden.
-        🇬🇧 No valid authentication data available for the requested resource.
+      description: "\U0001F1E9\U0001F1EA Keine gültigen Authentifizierungsdaten für die angeforderte Ressource vorhanden.\n\U0001F1EC\U0001F1E7 No valid authentication data available for the requested resource.\n"
       content:
         application/json:
           schema:
             $ref: "#/components/schemas/Error"
-
     NotFoundError:
-      description: |
-        🇩🇪 Die angeforderte Resource konnte nicht gefunden werden.
-        🇬🇧 The requested resource could not be found.
+      description: "\U0001F1E9\U0001F1EA Die angeforderte Resource konnte nicht gefunden werden.\n\U0001F1EC\U0001F1E7 The requested resource could not be found.\n"
       content:
         application/json:
           schema:
             $ref: "#/components/schemas/Error"
-
     UnprocessableContentError:
-      description: |
-        🇩🇪 Die Anfrage konnte nicht verarbeiten werden, da sie ungültige Daten enthält.
-        🇬🇧 The request could not be processed because it contains invalid data.
+      description: "\U0001F1E9\U0001F1EA Die Anfrage konnte nicht verarbeiten werden, da sie ungültige Daten enthält.\n\U0001F1EC\U0001F1E7 The request could not be processed because it contains invalid data.\n"
       content:
         application/json:
           schema:
             $ref: "#/components/schemas/Error"
-
   schemas:
     # suva occupation code
     SuvaOccupationCode:
-      description: |
-        🇩🇪 Suva-Berufscode
-        🇬🇧 Suva occupation code
+      description: "\U0001F1E9\U0001F1EA Suva-Berufscode\n\U0001F1EC\U0001F1E7 Suva occupation code\n"
       type: object
       properties:
         id:
@@ -496,18 +406,12 @@ components:
         - id
         - descriptions
         - iscoOccupationTypeId
-
     SuvaOccupationCodeId:
-      description: |
-        🇩🇪 ID für einen Suva-Berufscode.
-        🇬🇧 ID for a Suva occupation code.
+      description: "\U0001F1E9\U0001F1EA ID für einen Suva-Berufscode.\n\U0001F1EC\U0001F1E7 ID for a Suva occupation code.\n"
       type: string
-
     # isco occupation type
     IscoOccupationType:
-      description: |
-        🇩🇪 ISCO-Berufsart
-        🇬🇧 ISCO occupation type
+      description: "\U0001F1E9\U0001F1EA ISCO-Berufsart\n\U0001F1EC\U0001F1E7 ISCO occupation type\n"
       type: object
       properties:
         id:
@@ -520,18 +424,12 @@ components:
         - id
         - companyPartCode
         - subclassSection
-
     IscoOccupationTypeId:
-      description: |
-        🇩🇪 5-Stellige Nummer für Berufsarten aus der Schweizer Berufsnomenklatur.
-        🇬🇧 5-digit number for occupation type from the Swiss professional nomenclature.
+      description: "\U0001F1E9\U0001F1EA 5-Stellige Nummer für Berufsarten aus der Schweizer Berufsnomenklatur.\n\U0001F1EC\U0001F1E7 5-digit number for occupation type from the Swiss professional nomenclature.\n"
       type: integer
-
     # occupation code
     OccupationCode:
-      description: |
-        🇩🇪 Berufscode (Individuell oder Suva)
-        🇬🇧 Occupation code (individual or Suva)
+      description: "\U0001F1E9\U0001F1EA Berufscode (Individuell oder Suva)\n\U0001F1EC\U0001F1E7 Occupation code (individual or Suva)\n"
       type: object
       properties:
         id:
@@ -550,52 +448,36 @@ components:
           $ref: "#/components/schemas/OccupationCodeActive"
       required:
         - id
-
     OccupationCodeId:
-      description: |
-        🇩🇪 ID für einen Berufscode.
-        🇬🇧 ID of an occupation code.
+      description: "\U0001F1E9\U0001F1EA ID für einen Berufscode.\n\U0001F1EC\U0001F1E7 ID of an occupation code.\n"
       type: string
       format: uuid
-
     # company part
     CompanyPartProfile:
-      description: |
-        🇩🇪 Betriebsteil-Situation
-        🇬🇧 Profiles for a company part
+      description: "\U0001F1E9\U0001F1EA Betriebsteil-Situation\n\U0001F1EC\U0001F1E7 Profiles for a company part\n"
       type: object
       properties:
         companyPartCode:
           $ref: "#/components/schemas/CompanyPartCode"
         iscoOccupationTypeIds:
-          description: |
-            🇩🇪 Liste von ISCO-Berufsarten.
-            🇬🇧 List of ISCO occupation types.
+          description: "\U0001F1E9\U0001F1EA Liste von ISCO-Berufsarten.\n\U0001F1EC\U0001F1E7 List of ISCO occupation types.\n"
           type: array
           items:
             $ref: "#/components/schemas/IscoOccupationTypeId"
         temporalProfiles:
-          description: |
-            🇩🇪 Liste von Betriebsteil-Zuständen.
-            🇬🇧 List of company part states.
+          description: "\U0001F1E9\U0001F1EA Liste von Betriebsteil-Zuständen.\n\U0001F1EC\U0001F1E7 List of company part states.\n"
           type: array
           items:
             $ref: "#/components/schemas/CompanyPartTemporalProfile"
       required:
         - companyPartCode
-
     CompanyPartCode:
-      description: |
-        🇩🇪 Betriebsteil-Code (BT-Code)
-        🇬🇧 Company part code
+      description: "\U0001F1E9\U0001F1EA Betriebsteil-Code (BT-Code)\n\U0001F1EC\U0001F1E7 Company part code\n"
       type: string
       minLength: 1
       maxLength: 1
-
     CompanyPartTemporalProfile:
-      description: |
-        🇩🇪 Betriebsteil-Zustand
-        🇬🇧 Company part state
+      description: "\U0001F1E9\U0001F1EA Betriebsteil-Zustand\n\U0001F1EC\U0001F1E7 Company part state\n"
       type: object
       properties:
         from:
@@ -607,9 +489,7 @@ components:
         subclassSection:
           $ref: "#/components/schemas/SubclassSection"
         descriptions:
-          description: |
-            🇩🇪 Betriebsteil-Bezeichnungen
-            🇬🇧 Company part description
+          description: "\U0001F1E9\U0001F1EA Betriebsteil-Bezeichnungen\n\U0001F1EC\U0001F1E7 Company part description\n"
           type: array
           minItems: 1
           items:
@@ -621,20 +501,15 @@ components:
         - upto
         - subclassSection
         - descriptions
-
     # events
     Event:
-      description: |
-        🇩🇪 Ein Event
-        🇬🇧 An event
+      description: "\U0001F1E9\U0001F1EA Ein Event\n\U0001F1EC\U0001F1E7 An event\n"
       type: object
       properties:
         id:
           $ref: "#/components/schemas/EventId"
         timestamp:
-          description: |
-            🇩🇪 Ereigniszeitpunkt
-            🇬🇧 Event occurrence time
+          description: "\U0001F1E9\U0001F1EA Ereigniszeitpunkt\n\U0001F1EC\U0001F1E7 Event occurrence time\n"
           type: string
           format: date-time
         status:
@@ -646,67 +521,33 @@ components:
             - $ref: "#/components/schemas/EventGrossPremiumChanged"
           discriminator:
             propertyName: eventType
-
     EventId:
-      description: |
-        🇩🇪 ID für einen Event.
-        🇬🇧 ID of an event.
+      description: "\U0001F1E9\U0001F1EA ID für einen Event.\n\U0001F1EC\U0001F1E7 ID of an event.\n"
       type: string
       format: uuid
-
     OccupationCodeSubmittedDecision:
-      description: |
-        🇩🇪 Ergebnis des Event.
-        - `accepted` Die Berufscode-Anfrage wurde erfolgreich verarbeitet und gemappt.
-        - `rejected` Die Berufscode-Anfrage wurde abgebrochen oder gelöscht.
-        
-        🇬🇧 Result of the event.
-        - `accepted` The submission of the occupation code was successfully processed and mapped.
-        - `rejected` The submission of the occupation code was cancelled or deleted.
+      description: "\U0001F1E9\U0001F1EA Ergebnis des Event.\n- `accepted` Die Berufscode-Anfrage wurde erfolgreich verarbeitet und gemappt.\n- `rejected` Die Berufscode-Anfrage wurde abgebrochen oder gelöscht.\n\n\U0001F1EC\U0001F1E7 Result of the event.\n- `accepted` The submission of the occupation code was successfully processed and mapped.\n- `rejected` The submission of the occupation code was cancelled or deleted.\n"
       type: string
-      enum: [ accepted, rejected ]
-
+      enum: [accepted, rejected]
     EventStatus:
-      description: |
-        🇩🇪 Status des Event.
-        - `created`:  Event wurde erstellt, Prozess für Verarbeitung wurde angestossen.
-        - `processed`: Event wurde verarbeitet, es liegen Ergebnisse vor. Event ist in der Auflistung unter <a href="#operations-Events-getEvents">/v1/events</a>.
-        - `acknowledged`: Event wurde quittiert. Quittierte Events werden nicht mehr in <a href="#operations-Events-getEvents">/v1/events</a> aufgeführt. Quittierte Events werden nach 30 Tagen aus dem System gelöscht.
-
-        🇬🇧 Status of an event.
-        - `created`: Event has been created, and the processing has been initiated.
-        - `processed`: Event has been processed and results are available. Event is listed under <a href="#operations-Events-getEvents">/v1/events</a>.
-        - `acknowledged`: Event has been acknowledged. Acknowledged events are no longer listed in <a href="#operations-Events-getEvents">/v1/events</a>. Acknowledged events are deleted from the system after 30 days.
-
+      description: "\U0001F1E9\U0001F1EA Status des Event.\n- `created`:  Event wurde erstellt, Prozess für Verarbeitung wurde angestossen.\n- `processed`: Event wurde verarbeitet, es liegen Ergebnisse vor. Event ist in der Auflistung unter <a href=\"#operations-Events-getEvents\">/v1/events</a>.\n- `acknowledged`: Event wurde quittiert. Quittierte Events werden nicht mehr in <a href=\"#operations-Events-getEvents\">/v1/events</a> aufgeführt. Quittierte Events werden nach 30 Tagen aus dem System gelöscht.\n\n\U0001F1EC\U0001F1E7 Status of an event.\n- `created`: Event has been created, and the processing has been initiated.\n- `processed`: Event has been processed and results are available. Event is listed under <a href=\"#operations-Events-getEvents\">/v1/events</a>.\n- `acknowledged`: Event has been acknowledged. Acknowledged events are no longer listed in <a href=\"#operations-Events-getEvents\">/v1/events</a>. Acknowledged events are deleted from the system after 30 days.\n"
       type: string
-      enum: [ created, processed, acknowledged ]
-
+      enum: [created, processed, acknowledged]
     EventOccupationCodeSubmitted:
-      description: |
-        🇩🇪 Ergebnis zu "Einreichen eines Berufscodes".
-        🇬🇧 Result for "Submitting an occupation code".
+      description: "\U0001F1E9\U0001F1EA Ergebnis zu \"Einreichen eines Berufscodes\".\n\U0001F1EC\U0001F1E7 Result for \"Submitting an occupation code\".\n"
       type: object
       properties:
         eventType:
           type: string
         occupation:
-          description: |
-            🇩🇪 Wenn das Property `decision` den Wert `rejected` hat, ist `occupation` immer `null`.
-            
-            🇬🇧 If the property `decision` is set to `rejected`, `occupation` will always be `null`.
+          description: "\U0001F1E9\U0001F1EA Wenn das Property `decision` den Wert `rejected` hat, ist `occupation` immer `null`.\n\n\U0001F1EC\U0001F1E7 If the property `decision` is set to `rejected`, `occupation` will always be `null`.\n"
           $ref: "#/components/schemas/OccupationCode"
         decision:
           $ref: "#/components/schemas/OccupationCodeSubmittedDecision"
       required:
         - eventType
-
     EventIscoOccupationTypeChanged:
-      description: |
-        🇩🇪 Ein für den Kunden aktiver ISCO-Berufsart wurde von der Suva einem neuen Risiko (UKT) zugeordnet. Tätigkeiten mit dem geänderten Risiko erhalten potentiell dabei anderen Prämiensätze.
-        Der Wechsel vom einer ISCO-Berufsart zu einem neuen Risiko erfolgt immer für ein ganzes Prämienjahr in der Zukunft.
-
-        🇬🇧 An ISCO occupation type active for the customer has been assigned a new risk (UKT) by the Suva. Activities with the changed risk may potentially receive different premium rates.
-        The change from one ISCO occupational occupation type to a new risk always takes effect for a full premium year in the future.
+      description: "\U0001F1E9\U0001F1EA Ein für den Kunden aktiver ISCO-Berufsart wurde von der Suva einem neuen Risiko (UKT) zugeordnet. Tätigkeiten mit dem geänderten Risiko erhalten potentiell dabei anderen Prämiensätze.\nDer Wechsel vom einer ISCO-Berufsart zu einem neuen Risiko erfolgt immer für ein ganzes Prämienjahr in der Zukunft.\n\n\U0001F1EC\U0001F1E7 An ISCO occupation type active for the customer has been assigned a new risk (UKT) by the Suva. Activities with the changed risk may potentially receive different premium rates.\nThe change from one ISCO occupational occupation type to a new risk always takes effect for a full premium year in the future.\n"
       type: object
       properties:
         eventType:
@@ -717,11 +558,8 @@ components:
           $ref: "#/components/schemas/IscoOccupationType"
       required:
         - eventType
-
     EventGrossPremiumChanged:
-      description: |
-        🇩🇪 Von der Suva wurde für ein Produkt ein neuer Prämiensatz verfügt.
-        🇬🇧 Suva has ordered a new premium rate for a product.
+      description: "\U0001F1E9\U0001F1EA Von der Suva wurde für ein Produkt ein neuer Prämiensatz verfügt.\n\U0001F1EC\U0001F1E7 Suva has ordered a new premium rate for a product.\n"
       type: object
       properties:
         eventType:
@@ -734,12 +572,9 @@ components:
           $ref: "#/components/schemas/Product"
       required:
         - eventType
-
     # commons
     OccupationDescription:
-      description: |
-        🇩🇪 Sprach- und geschlechtsspezifische Berufsbezeichnung.
-        🇬🇧 Language- and gender-specific occupation description.
+      description: "\U0001F1E9\U0001F1EA Sprach- und geschlechtsspezifische Berufsbezeichnung.\n\U0001F1EC\U0001F1E7 Language- and gender-specific occupation description.\n"
       allOf:
         - $ref: "#/components/schemas/LocalizedValue"
         - type: object
@@ -750,33 +585,23 @@ components:
         - language
         - gender
         - value
-
     GrossPremium:
-      description: |
-        🇩🇪 Bruttoprämiensätze (BPS)
-        🇬🇧 Gross premium rates (BPS)
+      description: "\U0001F1E9\U0001F1EA Bruttoprämiensätze (BPS)\n\U0001F1EC\U0001F1E7 Gross premium rates (BPS)\n"
       type: object
       properties:
         occupationalAccidentInsurance:
-          description: |
-            🇩🇪 Berufsunfallversicherung (BUV)
-            🇬🇧 Occupational accident insurance (BUV)
+          description: "\U0001F1E9\U0001F1EA Berufsunfallversicherung (BUV)\n\U0001F1EC\U0001F1E7 Occupational accident insurance (BUV)\n"
           type: number
           format: float
         nonOccupationalAccidentInsurance:
-          description: |
-            🇩🇪 Nichtberufsunfallversicherung (NBUV)
-            🇬🇧 Non occupational accident insurance (NBUV)
+          description: "\U0001F1E9\U0001F1EA Nichtberufsunfallversicherung (NBUV)\n\U0001F1EC\U0001F1E7 Non occupational accident insurance (NBUV)\n"
           type: number
           format: float
       required:
         - occupationalAccidentInsurance
         - nonOccupationalAccidentInsurance
-
     LocalizedValue:
-      description: |
-        🇩🇪 Ein sprachbezogener Wert.
-        🇬🇧 A language-specific value.
+      description: "\U0001F1E9\U0001F1EA Ein sprachbezogener Wert.\n\U0001F1EC\U0001F1E7 A language-specific value.\n"
       type: object
       properties:
         language:
@@ -786,84 +611,47 @@ components:
       required:
         - language
         - value
-
     OccupationCodeActive:
-      description: |
-        🇩🇪 Gibt an, ob ein Berufscode aktiv ist oder nicht.
-        🇬🇧 Indicates whether an occupation code is active or not.
+      description: "\U0001F1E9\U0001F1EA Gibt an, ob ein Berufscode aktiv ist oder nicht.\n\U0001F1EC\U0001F1E7 Indicates whether an occupation code is active or not.\n"
       type: boolean
-
     SubclassSection:
-      description: |
-        🇩🇪 Schlüssel für den Unterklassenteil (UKT)
-        Unterklassenteile sind Risikogemeinschaften mit gleichartigem Unfallrisiko.
-        siehe [Prämientarif der Suva](https://www.suva.ch/2925-25.D) und [Basissätze](https://www.suva.ch/335-24.D)
-
-        🇬🇧 Key for subclass section (UKT)
-        Subclass sections are risk communities with similar accident risks.
-        See [Prämientarif der Suva](https://www.suva.ch/2925-25.D) and [Basissätze](https://www.suva.ch/335-24.D)
+      description: "\U0001F1E9\U0001F1EA Schlüssel für den Unterklassenteil (UKT)\nUnterklassenteile sind Risikogemeinschaften mit gleichartigem Unfallrisiko.\nsiehe [Prämientarif der Suva](https://www.suva.ch/2925-25.D) und [Basissätze](https://www.suva.ch/335-24.D)\n\n\U0001F1EC\U0001F1E7 Key for subclass section (UKT)\nSubclass sections are risk communities with similar accident risks.\nSee [Prämientarif der Suva](https://www.suva.ch/2925-25.D) and [Basissätze](https://www.suva.ch/335-24.D)\n"
       type: string
-
     PremiumYear:
-      description: |
-        🇩🇪 Prämienjahr (Standard: Kalenderjahr)
-        🇬🇧 Premium year (default: calendar year)
+      description: "\U0001F1E9\U0001F1EA Prämienjahr (Standard: Kalenderjahr)\n\U0001F1EC\U0001F1E7 Premium year (default: calendar year)\n"
       type: integer
       minimum: 2000
       maximum: 3000
-
     Gender:
-      description: |
-        🇩🇪 Geschlecht
-        🇬🇧 Gender
+      description: "\U0001F1E9\U0001F1EA Geschlecht\n\U0001F1EC\U0001F1E7 Gender\n"
       type: string
-      enum: [ female, genderless, male ]
-
+      enum: [female, genderless, male]
     Language:
-      description: |
-        🇩🇪 Sprache
-        🇬🇧 Language
+      description: "\U0001F1E9\U0001F1EA Sprache\n\U0001F1EC\U0001F1E7 Language\n"
       type: string
-      enum: [ de, fr, it, en ]
-
+      enum: [de, fr, it, en]
     Product:
-      description: |
-        🇩🇪 Produkt: Berufsunfallversicherung (BUV), Nichtberufsunfallversicherung (NBUV)
-        🇬🇧 Product: Occupational accident insurance (BUV), Non occupational accident insurance (NBUV)
+      description: "\U0001F1E9\U0001F1EA Produkt: Berufsunfallversicherung (BUV), Nichtberufsunfallversicherung (NBUV)\n\U0001F1EC\U0001F1E7 Product: Occupational accident insurance (BUV), Non occupational accident insurance (NBUV)\n"
       type: string
-      enum: [ buv, nbuv ]
-
+      enum: [buv, nbuv]
     OccupationCodeNumber:
-      description: |
-        🇩🇪 Individueller Schlüssel zur Kennzeichnung des Berufscodes.
-        🇬🇧 Individual key for identifying the occupation code.
+      description: "\U0001F1E9\U0001F1EA Individueller Schlüssel zur Kennzeichnung des Berufscodes.\n\U0001F1EC\U0001F1E7 Individual key for identifying the occupation code.\n"
       maxLength: 40
       type: string
-
     Error:
-      description: |
-        🇩🇪 Fehlermeldung
-        🇬🇧 Error message
+      description: "\U0001F1E9\U0001F1EA Fehlermeldung\n\U0001F1EC\U0001F1E7 Error message\n"
       properties:
         message:
-          description: |
-            🇩🇪 Die in englischer Sprache gelieferte Fehlermeldung. Beispiel: 'Occupation code with id '00000000-0000-0000-0000-000000000000' not found'.
-            🇬🇧 Error message provided in English. Example: 'Occupation code with id '00000000-0000-0000-0000-000000000000' not found'.
+          description: "\U0001F1E9\U0001F1EA Die in englischer Sprache gelieferte Fehlermeldung. Beispiel: 'Occupation code with id '00000000-0000-0000-0000-000000000000' not found'.\n\U0001F1EC\U0001F1E7 Error message provided in English. Example: 'Occupation code with id '00000000-0000-0000-0000-000000000000' not found'.\n"
           type: string
         id:
-          description: |
-            🇩🇪 Eindeutige ID der Fehlermeldung. Beispiel: Zwei Fehlermeldungen 'Occupation code with id '00000000-0000-0000-0000-000000000000' not found' haben unterschiedliche ID's.
-            🇬🇧 Unique ID of the error message. Example: Two error messages 'Occupation code with id '00000000-0000-0000-0000-000000000000' not found' have different IDs.
+          description: "\U0001F1E9\U0001F1EA Eindeutige ID der Fehlermeldung. Beispiel: Zwei Fehlermeldungen 'Occupation code with id '00000000-0000-0000-0000-000000000000' not found' haben unterschiedliche ID's.\n\U0001F1EC\U0001F1E7 Unique ID of the error message. Example: Two error messages 'Occupation code with id '00000000-0000-0000-0000-000000000000' not found' have different IDs.\n"
           type: string
         key:
-          description: |
-            🇩🇪 Key der Fehlermeldung. Beispiel: Zwei Fehlermeldungen 'Occupation code with id '00000000-0000-0000-0000-000000000000' not found' haben denselben Key.
-            🇬🇧 Key of the error message. Example: Two error messages 'Occupation code with id '00000000-0000-0000-0000-000000000000' not found' have the same key.
+          description: "\U0001F1E9\U0001F1EA Key der Fehlermeldung. Beispiel: Zwei Fehlermeldungen 'Occupation code with id '00000000-0000-0000-0000-000000000000' not found' haben denselben Key.\n\U0001F1EC\U0001F1E7 Key of the error message. Example: Two error messages 'Occupation code with id '00000000-0000-0000-0000-000000000000' not found' have the same key.\n"
           type: string
         args:
-          description: |
-            🇩🇪 Argumente für die Aufbereitung einer Fehlermeldung. Zum Beispiel: '00000000-0000-0000-0000-000000000000'
-            🇬🇧 Arguments for formatting an error message. For example: '00000000-0000-0000-0000-000000000000'
+          description: "\U0001F1E9\U0001F1EA Argumente für die Aufbereitung einer Fehlermeldung. Zum Beispiel: '00000000-0000-0000-0000-000000000000'\n\U0001F1EC\U0001F1E7 Arguments for formatting an error message. For example: '00000000-0000-0000-0000-000000000000'\n"
           type: array
           items:
             type: string
@@ -871,11 +659,8 @@ components:
         - message
         - id
         - key
-
   securitySchemes:
     ApiKeyAuth:
-      description: |
-        🇩🇪 Authentifizierung über Bearer-Token - siehe OAuth-Beispiele auf https://github.com/suva-ch/risk-api-demo-python/tree/main
-        🇬🇧 Authentication via Bearer Token - see OAuth examples at https://github.com/suva-ch/risk-api-demo-python/tree/main
+      description: "\U0001F1E9\U0001F1EA Authentifizierung über Bearer-Token - siehe OAuth-Beispiele auf https://github.com/suva-ch/risk-api-demo-python/tree/main\n\U0001F1EC\U0001F1E7 Authentication via Bearer Token - see OAuth examples at https://github.com/suva-ch/risk-api-demo-python/tree/main\n"
       type: http
       scheme: bearer
