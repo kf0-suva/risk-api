@@ -20,7 +20,7 @@ servers:
 
 tags:
   - name: Suva Occupation Codes
-  - name: ISCO-Occupation Types
+  - name: ISCO Occupation Types
   - name: Occupation Codes
   - name: Company Parts
   - name: Events
