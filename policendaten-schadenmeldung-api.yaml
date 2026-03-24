@@ -1,7 +1,7 @@
 openapi: 3.1.0
 
 info:
-  version: 0.10.0
+  version: '1.2.3'
   title: Policendaten Schadenmeldung API
   description: |
     🇩🇪 Diese API liefert Policendaten basierend auf dem Ereignis-Datum für eine Schadenmeldung.
